@@ -1,0 +1,75 @@
+{% extends 'profile.html' %}   {# extends子模板继承父模板。填写父模板的文件路径 #}
+{% load static %}
+{% block title %} 功能模块 {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tools.css' %}">
+{% endblock css %}
+
+{% block pagetitle %}
+    <i class="icon-th-large"></i>
+    功能模块
+{% endblock pagetitle %}
+
+{% block profile %}
+
+    <div class="widget">
+        <div class="widget-header">
+            <h3 style="margin-top: 0">功能模块</h3>
+        </div>
+        <div class="widget-content">
+            <div class="tools">
+                <a href="/map/">
+                    <div class="tool-content tool1">
+                        <div class="tools-img">
+                            <img src="{% static 'imgs/map.png' %}" alt="" style="display: block" class="img1">
+                            <img src="{% static 'imgs/map2.png' %}" alt="" style="display: none" class="img2">
+                            <div class="H-tool-conten btn-success" style="display: none">
+                                地图
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/index/">
+                    <div class="tool-content tool2">
+                        <div class="tools-img">
+                            <img src="{% static 'imgs/house.png' %}" alt="" style="display: block" class="img1">
+                            <img src="{% static 'imgs/house2.png' %}" alt="" style="display: none" class="img2">
+                            <div class="H-tool-conten btn-success" style="display: none">
+                                房屋信息
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/tools/expectation/">
+                    <div class="tool-content tool3">
+                        <div class="tools-img">
+                            <img src="{% static 'imgs/money.png' %}" alt="" style="display: block" class="img1">
+                            <img src="{% static 'imgs/money2.png' %}" alt="" style="display: none" class="img2">
+                            <div class="H-tool-conten btn-success" style="display: none">
+                                价格预测
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/tools/release/">
+                    <div class="tool-content tool4">
+                        <div class="tools-img">
+                            <img src="{% static 'imgs/fabu.png' %}" alt="" style="display: block" class="img1">
+                            <img src="{% static 'imgs/fabu2.png' %}" alt="" style="display: none" class="img2">
+                            <div class="H-tool-conten btn-success" style="display: none">
+                                房源发布
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock profile %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/tools.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock js %}

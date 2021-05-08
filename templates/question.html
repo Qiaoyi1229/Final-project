@@ -1,0 +1,182 @@
+{% extends 'profile.html' %}
+{% load static %}
+{% block title %} 常见问题 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/question.css' %}">
+{% endblock css %}
+
+{% block pagetitle %}
+    <i class="icon-pushpin"></i>
+    常见问题
+{% endblock pagetitle %}
+
+{% block profile %}
+    <div class="widget">
+        <div class="widget-content">
+            <h3 style="margin-top: 0">搜索关键字</h3>
+            <div class="faq-container">
+                <div class="faq-search">
+                    <input class="search" type="text" name="search" placeholder="搜索关键字">
+                </div>
+                <hr>
+                <div class="faq-toc">
+                    <ol>
+                        <li>1. <a href="#faq-1">怎么样搜索问题?</a></li>
+                        <li>2. <a href="#faq-2">如何更新房屋信息?</a></li>
+                        <li>3. <a href="#faq-3">如何选择合适价格的房屋?</a></li>
+                        <li>4. <a href="#faq-4">如何发布使用该系统发布房屋信息?</a></li>
+                        <li>5. <a href="#faq-5">如何使用图表分析功能?</a></li>
+                        <li>6. <a href="#faq-6">如何更新账户信息?</a></li>
+                        <li>7. <a href="#faq-7">如何修改密码?</a></li>
+                        <li>8. <a href="#faq-8">忘记密码怎么办?</a></li>
+                        <li>9. <a href="#faq-9">如何使用地图查看当前的房屋的信息?</a></li>
+                        <li>10. <a href="#faq-10">网页访问404怎么办?</a></li>
+                    </ol>
+                </div>
+                <ol class="faq-list">
+                    <li id="faq-1">
+                        <div class="faq-icon">
+                            <div class="faq-number">1</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>怎么样搜索问题?</h4>
+                            <p>问题搜索采用关键字搜索法，通过输入关键字，自动过滤与关键字无关的问题，将相关的问题自动呈现出来。</p>
+                        </div>
+                    </li>
+                    <li id="faq-2">
+                        <div class="faq-icon">
+                            <div class="faq-number">2</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>如何更新房屋信息?</h4>
+                            <p>房屋信息会根据数据库中的信息自动部署在”房屋信息“页面中，并且会自动统计信息总数、涉及区域和城市等信息，
+                            并可视化在图表中，有利于顾客的查看和分析。</p>
+                        </div>
+                    </li>
+                    <li id="faq-3">
+                        <div class="faq-icon">
+                            <div class="faq-number">3</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>如何选择合适价格的房屋?</h4>
+                            <p>该系统会根据您提供的信息，比如价格区间、区域、城市、朝向、房屋大小、租赁类型等，结合智能算法
+                            将排名最优的结果推荐给您。</p>
+                        </div>
+                    </li>
+                    <li id="faq-4">
+                        <div class="faq-icon">
+                            <div class="faq-number">4</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>如何发布使用该系统发布房屋信息?</h4>
+                            <p>在该系统的功能模块里，您可以选择发布房屋的功能，根据上面提示的信息填写并提交，可以将您
+                            自己的房屋信息提交到网站中了。</p>
+                        </div>
+                    </li>
+                    <li id="faq-5">
+                        <div class="faq-icon">
+                            <div class="faq-number">5</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>如何使用图表分析功能?</h4>
+                            <p>图标分析是针对客户可视化需求提出的功能，可以按照您选择的要求，比如房屋大小、房屋价格等，对
+                            房屋信息进行整理和分析，可视化价格折线图、房屋大小分析图等</p>
+                        </div>
+                    </li>
+                    <li id="faq-6">
+                        <div class="faq-icon">
+                            <div class="faq-number">6</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>如何更新账户信息?</h4>
+                            <p>在账户信息功能中，您可以根据自己的喜好，对您的手机号、性别、邮箱等信息进行更改，注意用户名是不可以
+                            更改的。</p>
+                        </div>
+                    </li>
+                    <li id="faq-7">
+                        <div class="faq-icon">
+                            <div class="faq-number">7</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>如何修改密码?</h4>
+                            <p>您可以在修改密码选项中，根据信息提示输入旧密码、新密码和重复密码后，通过旧密码的验证，以及两次
+                            密码相同与否才可以成功修改密码，并重新登录。</p>
+                        </div>
+                    </li>
+                    <li id="faq-8">
+                        <div class="faq-icon">
+                            <div class="faq-number">8</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>忘记密码怎么办?</h4>
+                            <p>当您忘记密码时，可以通过输入的用户名以及邮箱验证修改密码。</p>
+                        </div>
+                    </li>
+                    <li id="faq-9">
+                        <div class="faq-icon">
+                            <div class="faq-number">9</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>如何使用地图查看当前的房屋的信息?</h4>
+                            <p>该系统还提供了地图功能，可将您选择的房屋信息可视化在地图上，更有利于您的选择。</p>
+                        </div>
+                    </li>
+                    <li id="faq-10">
+                        <div class="faq-icon">
+                            <div class="faq-number">10</div>
+                        </div>
+                        <div class="faq-text">
+                            <h4>网页访问404怎么办?</h4>
+                            <p>请检查您输入的网址。</p>
+
+                        </div>
+                    </li>
+                    <div class="faq-empty">Nothing Found</div>
+                </ol>
+
+            </div>
+        </div>
+    </div>
+{% endblock profile %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/question.js' %}"></script>
+{#    <script type="text/javascript">#}
+{#        $(function search(e) {#}
+{#            var el, container, filter, count, pattern, answers, toc, tocs, empty;#}
+{##}
+{#            el = $(this);#}
+{#            container = el.parents('.faq-container');#}
+{#            filter = el.val();#}
+{#            toc = container.find('.faq-toc');#}
+{#            answers = container.find('.faq-list').find('li');#}
+{#            tocs = container.find('.faq-toc').find('li');#}
+{#            empty = container.find('.faq-empty');#}
+{#            pattern = new RegExp(filter, 'i');#}
+{##}
+{#            answers.hide();#}
+{#            tocs.hide();#}
+{##}
+{#            $.grep(answers.find('.faq-text'), function (input) {#}
+{#                if (pattern.test($(input).text())) {#}
+{#                    $(input).parents('li').show();#}
+{##}
+{#                    var index = $(input).parents('li').index();#}
+{#                    tocs.eq(index).show();#}
+{#                }#}
+{#            });#}
+{##}
+{#            if (!answers.is(':visible')) {#}
+{#                empty.show();#}
+{#                toc.hide();#}
+{#            } else {#}
+{#                empty.hide();#}
+{#                toc.show();#}
+{#            }#}
+{#        })#}
+{#    </script>#}
+{% endblock js %}
+

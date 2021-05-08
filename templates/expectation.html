@@ -1,0 +1,149 @@
+{% extends 'profile.html' %}   {# extends子模板继承父模板。填写父模板的文件路径 #}
+{% load static %}
+{% block title %} 价格预测 {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/expectation.css' %}">
+{% endblock css %}
+
+{% block pagetitle %}
+    <i class="icon-th-large"></i>
+    功能模块
+{% endblock pagetitle %}
+
+{% block profile %}
+
+    <div class="widget">
+        <div class="widget-header">
+            <h3 style="margin-top: 0">功能模块</h3>
+        </div>
+        <div class="widget-content">
+            <div class="nav-tools">
+                <p><a href="/tools/">功能模块</a></p>
+                <p>&nbsp;&gt;&nbsp;</p>
+                <p>价格预测</p>
+            </div>
+            <div class="expr-header">
+                <h1>租房价格预测</h1>
+            </div>
+            <div class="m-entry">
+                <div class="expe-content">
+                    <dl class="compact">
+                        <dt>小区所在城市</dt>
+                        <dd class="city-select">
+                            <div class="city-name">成都</div>
+                        </dd>
+                    </dl>
+                    <dl class="expe-area">
+                        <dt>小区所在区域</dt>
+                        <dd>
+                            <div class="u-select u-select-build u-select-area">
+                                <input placeholder="区域" name="building" maxlength="10" data-id=""
+                                       class="u-select-selected u-input-area" type="text" value="">
+                                <ul class="u-li" style="display: none;">
+                                    {% for i in district_item|slice:"0:5" %}
+                                        <li>{{ i }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="u-select u-select-build u-select-road">
+                                <input placeholder="街道" name="unit" maxlength="10" data-id="" class="u-select-selected"
+                                       type="text" value="">
+                                <ul class="u-li" style="display: none;"></ul>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="expe-village">
+                        <dt>小区</dt>
+                        <dd class="wrap-sug">
+                            <div class="u-sug" id="u-sug">
+                                <input class="sugInput" name="resblock" type="text" autocomplete="off"
+                                       placeholder="请输入小区名">
+                                <ul style="display: none;"></ul>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>房屋地址</dt>
+                        <dd>
+                            <div class="u-select u-select-build">
+                                <input placeholder="楼栋号" name="building" maxlength="10" data-id=""
+                                       class="u-select-selected" type="text" value="">
+                            </div>
+                            <div class="u-select u-select-build">
+                                <input placeholder="单元号" name="unit" maxlength="10" data-id="" class="u-select-selected"
+                                       type="text" value="">
+                            </div>
+                            <div class="u-select u-select-build">
+                                <input placeholder="门牌号" name="house" maxlength="10" data-id=""
+                                       class="u-select-selected" type="text" value="">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="expe-form">
+                        <dt>出租方式</dt>
+                        <dd>
+                            <div class="u-select u-select-build u-form">
+                                <input placeholder="出租方式" name="rent_mode" readonly="readonly" data-id="1"
+                                       class="u-select-selected" type="text" value="整租">
+                                <ul class="u-select-options" style="display: none;">
+                                    <li>整租</li>
+                                    <li>合租</li>
+                                </ul>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="expe-size">
+                        <dt>房屋大小</dt>
+                        <dd>
+                            <input name="expectation_price" value="" type="text" placeholder="请输入您租出房屋的大小"
+                                   autocomplete="off" style="width: 210px;">
+                            <div class="unit">平米</div>
+                        </dd>
+                    </dl>
+                    <dl class="expe-direction">
+                        <dt>房屋朝向</dt>
+                        <dd>
+                            <input name="expectation_price" value="" type="text" placeholder="请输入您租出房屋的朝向"
+                                   autocomplete="off" style="width: 210px;">
+                        </dd>
+                    </dl>
+                    <dl class="expe-item">
+                        <dt>房屋居室</dt>
+                        <dd>
+                            <input name="expectation_price" value="" type="text" placeholder="请输入您租出房屋的居室"
+                                   autocomplete="off" style="width: 210px;">
+                        </dd>
+                    </dl>
+                    <dl class="expe-price">
+                        <dt>预测价格</dt>
+                        <dd>
+{#                            <input placeholder="房屋预测的价格" name="rent_mode" readonly="readonly" data-id="1"#}
+{#                                       class="u-select-selected" type="text" value="">#}
+{#                            <div class="unit">元/月</div>#}
+                            <span class="item-price">
+                                <em>???</em> 元/月
+                            </span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <p class="tips">
+                提示：您点击“价格预测”后，若您的房源通过平台初步审核，将会由经纪人和您取得联系，并对您的房源进行再次核实，核实无误后将与您建立服务关系。平台仅提供信息展示和网络技术服务。
+            </p>
+            <div class="m-submit">
+                <div class="wrap">
+                    <div class="btn-submit">
+                        价格预测
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock profile %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/expectation.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock js %}

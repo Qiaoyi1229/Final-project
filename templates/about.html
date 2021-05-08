@@ -1,0 +1,18 @@
+{% extends 'profile.html' %}   {# extends子模板继承父模板。填写父模板的文件路径 #}
+
+{% block title %} 关于 {% endblock %}
+
+{% block pagetitle %}
+    <i class="icon-about"></i>
+    关于
+{% endblock pagetitle %}
+
+{% block profile %}
+
+    <div class="widget">
+        <div class="widget-content">
+            <h1 style="margin-top: 0;text-align: center">基于Django的租房系统</h1>
+        </div>
+    </div>
+
+{% endblock profile %}

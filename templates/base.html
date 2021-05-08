@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block meta %}
+        <meta charset="UTF-8">
+    {% endblock meta %}
+    <title>
+        {% block title %}
+            首页
+        {% endblock title %}
+    </title>
+    {% block script %}{% endblock script %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">房屋租赁系统</a>
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    {% block login %}
+
+                        <li class="divider-vertical"></li>
+
+                        {% if request.session.is_login %}
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle " href="">
+                                    用户：{{ request.session.user_name }} <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/profile/"><i class="icon-user"></i> 个人中心 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/set_password/"><i class="icon-lock"></i> 修改密码 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/index/"><i class="icon-index"></i> 房屋信息 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/about/"><i class="icon-about"></i> 关于 </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="/logout/"><i class="icon-off"></i> 退出登录</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        {% else %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/login/">登录</a></li>
+                                <li><a href="/register/">注册</a></li>
+                            </ul>
+                        {% endif %}
+                    {% endblock login %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block body %}{% endblock body %}
+
+<div id="footer">
+    <div class="container">
+        <hr>
+        <p>© 2021.</p>
+    </div>
+</div>
+
+
+</body>
+<script src="{% static 'js/jQuery.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+<script src="http://cdn.highcharts.com.cn/highcharts/9.0.0/highcharts.js"></script>
+<script src="http://cdn.highcharts.com.cn/highstock/9.0.0/highstock.js"></script>
+<script src="http://cdn.highcharts.com.cn/highmaps/9.0.0/highmaps.js"></script>
+<script src="http://cdn.highcharts.com.cn/gantt/9.0.0/highcharts-gantt.js"></script>
+{% block js %}{% endblock js %}
+</html>

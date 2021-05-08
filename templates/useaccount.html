@@ -1,0 +1,162 @@
+{% extends 'profile.html' %}   {# extends子模板继承父模板。填写父模板的文件路径 #}
+{% load static %}
+{% block title %} 账户信息 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/useaccount.css' %}">
+{% endblock css %}
+
+{% block pagetitle %}
+    <i class="icon-user"></i>
+    账户信息
+{% endblock pagetitle %}
+
+{% block profile %}
+
+    <div class="widget">
+        <div class="widget-header">
+            <h3 style="margin-top: 0">基本信息</h3>
+        </div>
+        <div class="widget-content">
+            <div class="tabbale">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#1" data-toggle="tab">个人信息</a>
+                    </li>
+                    <li><a href="#2" data-toggle="tab">设置</a></li>
+                </ul>
+                <br>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="1">
+                        <form id="edit-profile" class="form-horizontal" action="/useaccount/" method="post">
+                            {% csrf_token %}
+                            {% if message %}
+                                <div class="alert alert-warning">{{ message }}</div>
+                            {% endif %}
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label" for="username">用户名</label>
+                                    <div class="controls" style="margin-left: 160px">
+                                        <input type="text" class="input-medium disabled" id="username"
+                                               value={{ request.session.user_name }}
+                                                       disabled="disabled">
+                                        <p class="help-block" style="margin-bottom: 9px">您的用户名用于登录，无法更改。</p>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+                                <div class="control-group">
+                                    <label class="control-label" for="firstname">手机号</label>
+                                    <div class="controls" style="margin-left: 160px">
+                                        <input type="text" class="input-medium" id="firstname"
+                                               style="margin-bottom: 9px" name="mobile" value={{ account_mobile }}>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+                                <div class="control-group">
+                                    <label class="control-label" for="lastname">年龄</label>
+                                    <div class="controls" style="margin-left: 160px">
+                                        <input type="text" class="input-medium" id="lastname"
+                                               style="margin-bottom: 9px" name="age" value={{ account_age }}>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+                                <div class="control-group">
+                                    <label class="control-label" for="email">邮箱</label>
+                                    <div class="controls" style="margin-left: 160px">
+                                        <input type="email" class="input-large" id="email"
+                                               style="margin-bottom: 9px" name="email" value={{ account_email }}>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+                                <br><br>
+                                <div class="control-group">
+                                    <label class="control-label" for="password1">密码</label>
+                                    <div class="controls" style="margin-left: 160px">
+                                        <input type="password" class="input-medium" id="password1"
+                                               style="margin-bottom: 9px" name="password1">
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+                                <div class="control-group">
+                                    <label class="control-label" for="password2">确认密码</label>
+                                    <div class="controls" style="margin-left: 160px">
+                                        <input type="password" class="input-medium" id="password2"
+                                               name="password2">
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+                                <br>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">保存</button>
+                                    <button class="btn" type="reset">取消</button>
+                                </div> <!-- /form-actions -->
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="2">
+                        <form id="edit-profile2" class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label" for="accounttype">设置类型</label>
+                                    <div class="controls">
+                                        <label class="radio">
+                                            <input type="radio" name="accounttype" value="option1" checked="checked"
+                                                   id="accounttype">
+                                            <div style="margin-top: 1px"> 类型1
+                                            </div>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="accounttype" value="option2">
+                                            <div style="margin-top: 1px"> 类型2
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="accountusername">账户用户名</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-large" id="accountusername"
+                                               value="rod.howard@example.com">
+                                        <p class="help-block">留白可以使用邮箱地址</p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="emailserver">邮箱验证</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-large" id="emailserver"
+                                               value="mail.example.com">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="accountpassword">密码</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-large" id="accountpassword" value="password">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="accountadvanced">条款选择</label>
+                                    <div class="controls">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="accountadvanced" value="option1"
+                                                   checked="checked" id="accountadvanced">
+                                            <div style="margin-top: 1px">您同意并愿意遵守用户协议
+                                            </div>
+
+                                        </label>
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="accounttype" value="option2">
+                                            <div style="margin-top: 1px"> 您同意并愿意遵守隐私政策
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">保存</button>
+                                    <button type="reset" class="btn">取消</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock profile %}

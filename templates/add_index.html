@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load pagetags %}
+
+{% block title %}
+    添加数据
+{% endblock title %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="page-header">
+            <h1>添加数据</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form action="/add_index/" method="post">
+                    <div class="form-group">
+                        <label for="city">城市</label>
+                        <input type="text" class="form-control" id="city" placeholder="城市" name="city">
+                    </div>
+                    <div class="form-group">
+                        <label for="district">区域</label>
+                        <input type="text" class="form-control" id="district" placeholder="区域" name="district">
+                    </div>
+                    <div class="form-group">
+                        <label for="area">小区</label>
+                        <input type="text" class="form-control" id="area" placeholder="小区" name="area">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">日期</label>
+                        <input type="date" class="form-control" id="date" placeholder="日期" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="form">出租类型</label>
+                        <input type="text" class="form-control" id="form" placeholder="出租类型" name="form">
+                    </div>
+                    <div class="form-group">
+                        <label for="village">房屋</label>
+                        <input type="text" class="form-control" id="village" placeholder="房屋" name="village">
+                    </div>
+                    <div class="form-group">
+                        <label for="item">房屋类型</label>
+                        <input type="text" class="form-control" id="item" placeholder="房屋类型" name="item">
+                    </div>
+                    <div class="form-group">
+                        <label for="direction">房屋朝向</label>
+                        <input type="text" class="form-control" id="direction" placeholder="房屋朝向" name="direction">
+                    </div>
+                    <div class="form-group">
+                        <label for="size">房屋大小</label>
+                        <input type="text" class="form-control" id="size" placeholder="房屋大小" name="size">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">价格</label>
+                        <input type="text" class="form-control" id="price" placeholder="价格" name="price">
+                    </div>
+                    <button class="btn btn-success pull-right">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load pagetags %}
+
+{% block title %}
+    房屋信息
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div class="container" style="margin-top: 50px">
+        <div class="bread__nav w1150">
+            <p class="bread__nav__wrapper oneline">
+                <a href="/home/">成都房屋租赁系统</a>&nbsp;&gt;&nbsp;
+            </p>
+            <h1>
+                <a href="/index/">成都租房</a>
+            </h1>
+        </div>
+
+        <div class="filter">
+            <div id="filter" class="filter__wrapper w1150">
+                <ul class="filter__item--moaside">
+                    <li class="filter__item--level1 down strong"><a href="">按区域</a></li>
+                </ul>
+                <ul class="filter__district">
+                    <li class="filter__item--level2 filter__item--aside {% if search_district == "不限" or search_district == none %} strong {% endif %}">
+                        <a href="#">不限</a></li>
+                    {% for i in district_item %}
+                        <li class="filter__item--level2 {% if search_district == i %} strong {% endif %}"><a
+                                href="#">{{ i }}</a></li>
+                    {% endfor %}
+                </ul>
+                <ul class="filter__ul">
+                    <li class="filter__item--level4 filter__item--aside"><a href="">方式</a></li>
+                    <li class="filter__item--level4 {% if search_form != '整租' and search_form != '合租' %} strong {% endif %}">
+                        <a href="#" rel="nofollow">不限</a></li>
+                    <li class="filter__item--level4 {% if search_form == '整租' %} strong {% endif %}"><a href="#">整租</a>
+                    </li>
+                    <li class="filter__item--level4 {% if search_form == '合租' %} strong {% endif %}"><a href="#">合租</a>
+                    </li>
+                </ul>
+                <ul class="filter__money">
+                    <li class="filter__item--level5 filter__item--aside"><a href="#">租金</a></li>
+                    <li class="filter__item--level5 check {% if search_price == "≤1000元" %} checked {% endif %}"><a
+                            href="#">≤1000元</a></li>
+                    <li class="filter__item--level5 check {% if search_price == "1000-1500元" %} checked {% endif %}"><a
+                            href="#">1000-1500元</a></li>
+                    <li class="filter__item--level5 check {% if search_price == "1500-2000元" %} checked {% endif %}"><a
+                            href="#">1500-2000元</a></li>
+                    <li class="filter__item--level5 check {% if search_price == "2000-3000元" %} checked {% endif %}"><a
+                            href="#">2000-3000元</a></li>
+                    <li class="filter__item--level5 check {% if search_price == "3000-5000元" %} checked {% endif %}"><a
+                            href="#">3000-5000元</a></li>
+                    <li class="filter__item--level5 check {% if search_price == "5000-8000元" %} checked {% endif %}"><a
+                            href="#">5000-8000元</a></li>
+                    <li class="filter__item--level5 check {% if search_price == "≥8000元" %} checked {% endif %}"><a
+                            href="#">≥8000元</a></li>
+                    <li class="filter__item--input">
+                        <input class="filter__lowprice__input" type="text" value="">-<input
+                            class="filter__highprice__input" type="text" value="">元
+                        <span class="filter__button filter__price__button"></span></li>
+                </ul>
+                <ul class="filter__direction">
+                    <li class="filter__item--level5 filter__item--aside"><a href="#">朝向</a></li>
+                    <li class="filter__item--level5 check {% if search_direction == '东' %} checked {% endif %}"><a
+                            href="#">东</a></li>
+                    <li class="filter__item--level5 check {% if search_direction == '西' %} checked {% endif %}"><a
+                            href="#">西</a></li>
+                    <li class="filter__item--level5 check {% if search_direction == '南' %} checked {% endif %}"><a
+                            href="#">南</a></li>
+                    <li class="filter__item--level5 check {% if search_direction == '北' %} checked {% endif %}"><a
+                            href="#">北</a></li>
+                    <li class="filter__item--level5 check {% if search_direction == '南北' %} checked {% endif %}"><a
+                            href="#">南北</a></li>
+                </ul>
+                <ul class="filter__area">
+                    <li class="filter__item--level5 filter__item--aside"><a href="#">面积</a></li>
+                    <li class="filter__item--level5 check {% if search_area == '≤40㎡' %} checked {% endif %}"><a
+                            rel="nofollow" href="#">≤40㎡</a></li>
+                    <li class="filter__item--level5 check {% if search_area == '40-60㎡' %} checked {% endif %}"><a
+                            rel="nofollow" href="#">40-60㎡</a></li>
+                    <li class="filter__item--level5 check {% if search_area == '60-80㎡' %} checked {% endif %}"><a
+                            rel="nofollow" href="#">60-80㎡</a></li>
+                    <li class="filter__item--level5 check {% if search_area == '80-100㎡' %} checked {% endif %}"><a
+                            rel="nofollow" href="#">80-100㎡</a></li>
+                    <li class="filter__item--level5 check {% if search_area == '100-120㎡' %} checked {% endif %}"><a
+                            rel="nofollow" href="#">100-120㎡</a></li>
+                    <li class="filter__item--level5 check {% if search_area == '≥120㎡' %} checked {% endif %}"><a
+                            rel="nofollow" href="#">≥120㎡</a></li>
+                    <li class="filter__item--input">
+                        <input class="filter__lowsize__input" type="text" value="">-<input
+                            class="filter__highsize__input" type="text" value="">㎡
+                        <span class="filter__button filter__size__button"></span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="content" class="content w1150">
+            <hr>
+            <div class="content__article">
+                <p class="content__title">
+                    已为您找到 <span class="content__title--hl">{{ length_contact }}</span> 套
+                    <a href="/index/" style="text-decoration:none;color:black">成都租房</a>
+                    <span class="content__title--aside"><a href="/index/" id="clearUrl">清空条件</a></span>
+                </p>
+                <ul id="contentList" class="content__filter">
+                    <li class="content__filter--selected"><a href="">综合排序</a></li>
+                    <li class=" "><a href="">最新上架</a></li>
+                    <li class=" "><a href="">价格</a></li>
+                    <li class=" "><a href="">面积</a></li>
+                </ul>
+                <div class="content__list">
+                    {% for item in contacts %}
+                        <div class="content__list--item">
+                            <a class="content__list--item--aside" href=""
+                               title="整租·东方颐城 2室1厅 南" data-id={{ item.id }}>
+                                <img src="https://image1.ljcdn.com/110000-inspection/pc1_MfAfnwyUL.jpg!m_fill,w_250,h_182,l_flianjia_black,o_auto"
+                                     class="lazyloaded"></a>
+
+                            <div class="content__list--item--main">
+                                <p class="content__list--item--title">
+                                    <a class="twoline" href="">
+                                        {{ item.form }}·{{ item.village }} {{ item.item }} {{ item.direction }}
+                                    </a>
+                                </p>
+                                <p class="content__list--item--des">
+                                    <a href="">{{ item.district }}</a>-<a
+                                        href="">{{ item.area }}</a>-
+                                    <a title="东方颐城" href="">{{ item.village }}</a>
+                                    <i>/</i>{{ item.size }}<i>/</i>{{ item.direction }} <i>/</i>{{ item.item }}
+                                </p>
+                                <p class="content__list--item--bottom oneline"></p>
+                                <p class="content__list--item--brand oneline">
+                                    <span class="brand">链家</span>
+                                    <span class="content__list--item--time oneline">{{ item.date|date:'Y-m-d' }}</span>
+                                </p>
+                                <div class="listButtonContainer">
+                                    <div class="btn-follow followBtn" data-id={{ item.id }}>
+                                        {% if user_name.count > 0 %}
+                                            {% for new in collection %}
+                                                {% if item.id == new %}
+                                                    <span class="follow-text" data-id={{ item.id }}>已关注</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <span class="follow-text" data-id={{ item.id }}>关注</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <span class="content__list--item-price"><em>{{ item.price }}</em> 元/月</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {#                <div class="content__pg">#}
+                {#                    <a class="hide" href="" data-page="0">&lt;</a>#}
+                {#                    <a class="cur" href="/zufang/#contentList" data-page="1">1</a>#}
+                {#                    <a href="/zufang/pg2/#contentList" data-page="2">2</a>#}
+                {#                    <a href="/zufang/pg3/#contentList" data-page="3">3</a>#}
+                {#                    <span>...</span>#}
+                {#                    <a href="/zufang/pg100/#contentList" data-page="100">100</a>#}
+                {#                    <a class="next" href="/zufang/pg2/#contentList" data-page="2">下一页</a>#}
+                {#                </div>#}
+                <div class="content__pg">
+                    {% if contacts.has_previous %}
+                        <a href="#" aria-label="Previous" class="Previous">上一页</a>
+                    {% endif %}
+                    {% for num in contacts.paginator.page_range %}
+                        {% cirle_page contacts.number num search_url %}
+                    {% endfor %}
+                    {% if contacts.has_next %}
+                        <a class="next" href="#" aria-label="Next">下一页</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {#        <div class="page-header">#}
+        {#            <h2>房屋数据信息 <small>成都</small></h2>#}
+        {#        </div>#}
+        {#        <div class="row">#}
+        {#            <div class="col-md-11 col-md-offset-1">#}
+        {#                <a href="/add_index/" class="btn btn-primary">添加数据</a>#}
+        {#                <table style="margin-top: 10px" class="table table-bordered table-striped table-hover">#}
+        {#                    <thead>#}
+        {#                    <tr>#}
+        {#                        <th width="50px">编号</th>#}
+        {#                        <th width="50px">城市</th>#}
+        {#                        <th>日期</th>#}
+        {#                        <th width="50px">区域</th>#}
+        {#                        <th width="80px">小区</th>#}
+        {#                        <th width="80px">出租类型</th>#}
+        {#                        <th>房屋</th>#}
+        {#                        <th>房屋类型</th>#}
+        {#                        <th width="80px">房屋朝向</th>#}
+        {#                        <th width="80px">房屋大小</th>#}
+        {#                        <th>价格</th>#}
+        {#                        <th colspan="2">操作</th>#}
+        {#                    </tr>#}
+        {#                    </thead>#}
+        {#                    <tbody>#}
+        {#                    {% for list in contacts %}#}
+        {#                        <tr>#}
+        {#                            <td>{{ forloop.counter }}</td>#}
+        {#                            <td>{{ list.city }}</td>#}
+        {#                            <td>{{ list.date|date:'Y-m-d' }}</td>#}
+        {#                            <td>{{ list.district }}</td>#}
+        {#                            <td>{{ list.area }}</td>#}
+        {#                            <td>{{ list.form }}</td>#}
+        {#                            <td>{{ list.village }}</td>#}
+        {#                            <td>{{ list.item }}</td>#}
+        {#                            <td>{{ list.direction }}</td>#}
+        {#                            <td>{{ list.size }}</td>#}
+        {#                            <td>{{ list.price }}</td>#}
+        {#                            <td><a href="" class="btn btn-warning">编辑</a></td>#}
+        {#                            <td><a href="" class="btn btn-danger">删除</a></td>#}
+        {#                        </tr>#}
+        {#                    {% endfor %}#}
+        {#                    </tbody>#}
+        {#                </table>#}
+        {##}
+        {#                <nav aria-label="Page navigation" class="pull-right">#}
+        {#                    <ul class="pagination">#}
+        {#                        {% if contacts.has_previous %}#}
+        {#                            <li>#}
+        {#                                <a href="#" aria-label="Previous">#}
+        {#                                    <span aria-hidden="true">&laquo;</span>#}
+        {#                                </a>#}
+        {#                            </li>#}
+        {#                        {% endif %}#}
+        {#                        {% for num in contacts.paginator.page_range %}#}
+        {#                            {% cirle_page contacts.number num %}#}
+        {#                        {% endfor %}#}
+        {#                        {% if contacts.has_next %}#}
+        {#                            <li>#}
+        {#                                <a href="#" aria-label="Next">#}
+        {#                                    <span aria-hidden="true">&raquo;</span>#}
+        {#                                </a>#}
+        {#                            </li>#}
+        {#                        {% endif %}#}
+        {#                    </ul>#}
+        {#                </nav>#}
+        {#            </div>#}
+        {#        </div>#}
+    </div>
+
+{% endblock body %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+{% endblock js %}
+

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    首页
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div id="content">
+        <div class="backimg"></div>
+        <div class="container">
+            <div class="home-title">
+                <p>房屋租赁系统</p>
+            </div>
+            <div class="home-num">
+                <ul>
+                    <li style="height: 35px;">11111110140 套</li>
+                    <li style="height: 35px;">成都链家在售新房楼盘 1513 个</li>
+                    <li style="height: 35px;">成都链家真实在售二手房 33864 套</li>
+                </ul>
+            </div>
+            <div class="search-box">
+                <div class="search-box-con">
+                    <div class="meun">
+                        <ul>
+{#                            <li class="tab CLICKDATA  check" data-type="请输入区域、商圈或小区名开始找房">#}
+{#                                <span>找二手房</span></li>#}
+{#                            <li class="tab CLICKDATA  " data-type="请输入楼盘名称开始找房">#}
+{#                                <span>找新房</span></li>#}
+                            <li class="tab CLICKDATA  check" data-type="请输入区域、商圈或小区名开始找房">
+                                <span>找租房</span></li>
+{#                            <li class="tab CLICKDATA  " data-type="请输入小区名开始查找小区">#}
+{#                                <span>找小区</span></li>#}
+                            <li class="tab CLICKDATA  " data-type="房产知识有疑问？来搜搜看吧~">
+                                <span>搜问答</span></li>
+                        </ul>
+                        <i style="left: 40px" class="left-i"></i>
+                    </div>
+                    <div class="search-home clear">
+                        <div class="box">
+                            <div class="clear searchBox">
+                                <input id="keyword-box" class="text left txt searchVal autoSuggest"
+                                       name="keyword" autocomplete="off" type="text"
+                                       placeholder="请输入区域、商圈或小区名开始找房">
+                                <a class="ditu-icon" href="/map/">
+                                    <span class="map-icon"></span>地图
+                                </a>
+                                <input id="findHouse" type="button" class="btn left home-ico ico-search" value="开始找房">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+{% endblock js %}

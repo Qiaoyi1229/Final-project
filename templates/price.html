@@ -1,0 +1,122 @@
+{% extends 'profile.html' %}   {# extends子模板继承父模板。填写父模板的文件路径 #}
+{% load static %}
+{% block title %} 价格推荐 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/price.css' %}">
+{% endblock css %}
+
+{% block pagetitle %}
+    <i class="icon-bank"></i>
+    价格推荐
+{% endblock pagetitle %}
+
+{% block profile %}
+
+    <div class="widget">
+        <div class="widget-header">
+            <h3 style="margin-top: 0">价格分析</h3>
+            <p style="line-height: 40px;width: 10px;height: 10px;float: left;">&nbsp;&gt;&nbsp;</p>
+            {% if user_name.count > 0 %}
+                <a href="javascript:;"><p class="switch-btn">我的收藏</p></a>
+            {% else %}
+                <a href="javascript:;"><p class="switch-btn">价格推荐</p></a>
+            {% endif %}
+            <a href="javascript:;">
+                <p class="update-next" style="display: {% if user_name.count > 2 %}block{% else %}none{% endif %}">
+                    下一页</p>
+            </a>
+            <a href="javascript:;">
+                <p class="update-up" style="display: {% if user_name.count > 2 %}block{% else %}none{% endif %}">
+                    上一页</p>
+            </a>
+            <a href="javascript:;" style="display: {% if user_name.count > 0 %}none{% else %}block{% endif %}">
+                <p class="update-item">换一批</p>
+            </a>
+        </div>
+        <div class="widget-content">
+            <div class="pricing-plans plans-3">
+                <div class="coll-store-show" {% if user_name.count > 0 %}style="display: block"
+                     {% else %}style="display: none"{% endif %}>
+                    {% for item in find_index %}
+                        <div class="plan-container store-show">
+                            <div class="plan orange">
+                                <div class="plan-header">
+                                    <div class="plan-title">
+                                        {{ item.4 }}
+                                        <span class="follow-text-col" data-id={{ item.0 }}>已关注</span>
+                                    </div> <!-- /plan-title -->
+                                    <div class="plan-price">
+                                        <span class="note">￥</span>{{ item.10 }}<span class="term">每月</span>
+                                    </div> <!-- /plan-price -->
+                                </div> <!-- /plan-header -->
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><strong>{{ item.5 }}</strong> 类型</li>
+                                        <li><strong>{{ item.9 }}</strong></li>
+                                        <li><strong>朝向</strong> {{ item.8 }}</li>
+                                        <li><strong>毗邻</strong> {{ item.6 }}</li>
+                                        <li><strong>{{ item.7 }}</strong></li>
+                                    </ul>
+                                </div> <!-- /plan-features -->
+                                <div class="plan-actions">
+                                    <a href="javascript:;" class="btn">购买</a>
+                                </div> <!-- /plan-actions -->
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="coll-store-none" {% if user_name.count > 0 %}style="display: none"
+                     {% else %}style="display: block"{% endif %}>
+                    {% for item in new_contact_list %}
+                        <div class="plan-container store-none">
+                            <div class="plan">
+                                <div class="plan-header">
+                                    <div class="plan-title">
+                                        {{ item.4 }}
+                                        <span class="follow-text-col" data-id={{ item.0 }}>关注</span>
+                                    </div> <!-- /plan-title -->
+                                    <div class="plan-price">
+                                        <span class="note">￥</span>{{ item.10 }}<span class="term">每月</span>
+                                    </div> <!-- /plan-price -->
+                                </div> <!-- /plan-header -->
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><strong>{{ item.5 }}</strong> 类型</li>
+                                        <li><strong>{{ item.9 }}</strong></li>
+                                        <li><strong>朝向</strong> {{ item.8 }}</li>
+                                        <li><strong>毗邻</strong> {{ item.6 }}</li>
+                                        <li><strong>{{ item.7 }}</strong></li>
+                                    </ul>
+                                </div> <!-- /plan-features -->
+                                <div class="plan-actions">
+                                    <a href="javascript:;" class="btn">购买</a>
+                                </div> <!-- /plan-actions -->
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget">
+        <div class="widget-header">
+            <h3 style="margin-top: 0">价格信息</h3>
+        </div> <!-- /widget-header -->
+        <div class="widget-content">
+            <p>根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格
+                根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格。</p>
+            <p>根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格
+                根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格根据要求推荐价格
+                根据要求推荐价格根据要求推荐价格。</p>
+        </div> <!-- /widget-content -->
+    </div>
+
+{% endblock profile %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/price.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock js %}

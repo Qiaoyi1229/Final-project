@@ -1,0 +1,145 @@
+.tabbable::before, .tabbable::after {
+    display: table;
+    content: "";
+}
+
+* {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.nav-tabs::before, .nav-pills::before, .nav-tabs::after, .nav-pills::after {
+    display: table;
+    content: "";
+}
+
+.form-horizontal .control-group::before, .form-horizontal .control-group::after {
+    display: table;
+    content: "";
+}
+
+.form-horizontal .control-label {
+    float: left;
+    width: 140px;
+    padding-top: 5px;
+    text-align: right;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333333;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+.form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+    background-color: #eeeeee;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
+
+input, textarea, .uneditable-input {
+    margin-left: 0;
+}
+
+input, textarea {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: border linear 0.2s,box-shadow linear 0.2s;
+}
+
+input, textarea, select, .uneditable-input {
+    height: 18px;
+    padding: 4px;
+    color: #555555;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+
+button, input, select, textarea {
+    margin: 0;
+    font-size: 100%;
+    vertical-align: middle;
+}
+
+.form-horizontal .help-block {
+    margin-top: 9px;
+    margin-bottom: 0;
+}
+.help-block {
+    display: block;
+    margin-bottom: 9px;
+}
+.help-block, .help-inline {
+    color: #555555;
+}
+
+.form-horizontal .form-actions {
+    padding-left: 160px;
+}
+
+.form-actions {
+    padding: 17px 20px 18px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    background-color: #eeeeee;
+    border-top: 1px solid #ddd;
+}
+
+.form-actions::before, .form-actions::after {
+    display: table;
+    content: "";
+}
+
+.btn-primary, .btn-primary:hover, .btn-warning, .btn-warning:hover, .btn-danger, .btn-danger:hover, .btn-success, .btn-success:hover, .btn-info, .btn-info:hover, .btn-inverse, .btn-inverse:hover {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+}
+
+.tab-content > .active, .pill-content > .active {
+    display: block;
+}
+
+.form-horizontal .control-group {
+    margin-bottom: 18px;
+}
+
+.form-horizontal .controls {
+    margin-left: 160px;
+}
+
+.controls > .radio:first-child, .controls > .checkbox:first-child {
+    padding-top: 5px;
+}
+.radio, .checkbox {
+    padding-left: 18px;
+}
+
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+    float: left;
+    margin-left: -18px;
+}
+
+.form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+input[type="image"], input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 3px 0;
+    line-height: normal;
+    cursor: pointer;
+    border-radius: 0;
+}

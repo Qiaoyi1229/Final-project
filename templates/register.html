@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Register {% endblock %}
+
+{% block css %}
+    <link href="{% static 'css/register.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="register-container">
+        <div id="register-header">
+            <h3>Register account</h3>
+        </div>
+        <div id="register-content" class="clearfix">
+            <form class='form-register' action="/register/" method="post">
+
+                {% csrf_token %}
+                {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="username">Username</label>
+                        <div class="controls">
+                            <input type="text" class="" id="username" name="username">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            <input type="password" class="" id="password1" name="password1">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="password">Confirm your password</label>
+                        <div class="controls">
+                            <input type="password" class="" id="password2" name="password2">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="email">邮箱</label>
+                        <div class="controls">
+                            <input type="email" class="" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ register_form.sex.label_tag }}
+                        <div class="controls">
+                            {{ register_form.sex }}
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-warning btn-large">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock body %}

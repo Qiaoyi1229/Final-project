@@ -1,0 +1,197 @@
+{% extends 'profile.html' %}   {# extends子模板继承父模板。填写父模板的文件路径 #}
+{% load static %}
+{% block title %} 图表分析 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chart.css' %}">
+{% endblock css %}
+
+{% block pagetitle %}
+    <i class="icon-signal"></i>
+    图表分析
+{% endblock pagetitle %}
+
+{% block profile %}
+    <div class="widget">
+        <div class="widget-header">
+            <h3 style="margin-top: 0">图表</h3>
+            <div class="pull-right">
+                <label for="select1">范围:</label><select id="select1" name="select1">
+                {% for i in district_item %}
+                    <option value={{ i }}>{{ i }}</option>
+                {% endfor %}
+            </select>
+                <label for="select2">区域:</label><select id="select2" name="select2">
+                {% for i in area_item %}
+                    <option value={{ i }}>{{ i }}</option>
+                {% endfor %}
+            </select>
+            </div>
+        </div>
+        <div class="widget-content">
+            <div id="bar-chart" class="chart-holder" style="padding: 0;">
+                <div id="area-chart"></div>
+            </div> <!-- /bar-chart -->
+        </div>
+    </div>
+
+{% endblock profile %}
+
+{% block js %}
+    <script type="text/javascript">
+        $.extend({
+            'ShowChart': function () {
+                var options1 = $("#select1 option:selected");
+                var options2 = $("#select2 option:selected");
+
+                $.ajax({
+                    url: "/chart/",
+                    type: "POST",
+                    data: {
+                        "options1": options1.val(),
+                        "options2": options2.val()
+                    },
+                    success: function (response) {
+                        if (response["show_chart"]) {
+                            console.log(response["show_chart"]);
+                            var chart = Highcharts.chart('area-chart', {
+                                chart: {
+                                    type: 'scatter',
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: options1.val() + '-' + options2.val() + "：房屋按出租类型划分的价格和房屋大小分布图"
+                                },
+                                subtitle: {
+                                    text: '数据来源: 链家'
+                                },
+                                xAxis: {
+                                    title: {
+                                        enabled: true,
+                                        text: '价格 (元)'
+                                    },
+                                    startOnTick: true,
+                                    endOnTick: true,
+                                    showLastLabel: true
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: '房屋大小 (平米)'
+                                    }
+                                },
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'left',
+                                    verticalAlign: 'top',
+                                    x: 100,
+                                    y: 70,
+                                    floating: true,
+                                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+                                    borderWidth: 1
+                                },
+                                plotOptions: {
+                                    scatter: {
+                                        marker: {
+                                            radius: 5,
+                                            states: {
+                                                hover: {
+                                                    enabled: true,
+                                                    lineColor: 'rgb(100,100,100)'
+                                                }
+                                            }
+                                        },
+                                        states: {
+                                            hover: {
+                                                marker: {
+                                                    enabled: false
+                                                }
+                                            }
+                                        },
+                                        tooltip: {
+                                            headerFormat: '<b>{series.name}</b><br>',
+                                            pointFormat: '{point.x} 元, {point.y} 平米'
+                                        }
+                                    }
+                                },
+                                series: [{
+                                    name: '整租',
+                                    color: 'rgba(223, 83, 83, .5)',
+                                    data: response["zheng_list"]
+                                }, {
+                                    name: '合租',
+                                    color: 'rgba(119, 152, 191, .5)',
+                                    data: response["he_list"]
+                                }]
+                            });
+                        } else {
+                            console.log(response["show_chart"]);
+                        }
+                    }
+                });
+            }
+        });
+
+        $('#select1').change(function () {
+            var options1 = $("#select1 option:selected");
+            var options2 = $("#select2 option:selected");
+
+            $.ajax({
+                url: "/chart/",
+                type: "POST",
+                data: {
+                    "options1": options1.val(),
+                    "options2": options2.val()
+                },
+                success: function (response) {
+                    var content = '';
+                    $.each(response["area_item"], function (i, item) {
+                        content += '<option value=' + item + '>' + item + '</option>'
+                    });
+                    $('#select2').html(content);
+                    console.log($("#select1 option:selected").val());
+                    console.log($("#select2 option:selected").val());
+                    $.ShowChart();
+                }
+            });
+        });
+
+        $('#select2').change(function () {
+            $.ShowChart();
+        });
+
+        $(function () {
+            $(".faq-tabbable").find("li").each(function () {
+                var a = $(this).find("a:first")[0];
+                if ($(a).attr("href") === location.pathname) {
+                    $(this).addClass("active");
+                } else {
+                    $(this).removeClass("active");
+                }
+            });
+
+            var options1 = $("#select1 option:selected");
+            var options2 = $("#select2 option:selected");
+
+            $.ajax({
+                url: "/chart/",
+                type: "POST",
+                data: {
+                    "options1": options1.val(),
+                    "options2": options2.val()
+                },
+                success: function (response) {
+                    var content = '';
+                    $.each(response["area_item"], function (i, item) {
+                        content += '<option value=' + item + '>' + item + '</option>'
+                    });
+                    $('#select2').html(content);
+                    console.log($("#select1 option:selected").val());
+                    console.log($("#select2 option:selected").val());
+                    $.ShowChart();
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock js %}
